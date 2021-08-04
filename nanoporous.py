@@ -42,7 +42,7 @@ geom = geom.remove([x for x in range(18) if x !=2 and x!=7])
 p = plot.GeometryPlot(geom, cmap='Greys',figsize=(19,40))
 # p.annotate(size=10);
 
-# geom.sc.set_nsc([1,1,1])
+geom.sc.set_nsc([1,1,0])
 
 # Build sisl.Hamiltonian object using the sp2 function
 H_elec = sp2(geom, t1=2.7, t2=0.2, t3=0.18)
@@ -52,14 +52,34 @@ MFH_elec = HubbardHamiltonian(H_elec, U=3.)
 
 MFH_elec.random_density()
 
-# Converge until a tolerance of tol=1e-10, print info for each 10 completed iterations
+# Converge until a tolerance of tol, print info for each 10 completed iterations
 dn = MFH_elec.converge(density.calc_n, tol=1e-7, print_info=True, steps=10)
 
 E_level = MFH_elec.Etot
 
-MFH_elec.eigh()
 
 np.save("MFH-finite20.npy", MFH_elec)
 
 p = plot.SpinPolarization(MFH_elec, colorbar=True, vmax=0.4, vmin=-0.4, figsize=(40,80))
-p.savefig('nanoporous.png')
+p.savefig('SpinPolarization.png')
+
+p = plot.Bandstructure(MFH_elec, ymax=3)
+p.savefig('BandStructure.png')
+
+ev, evec = MFH_elec.eigh(eigvals_only=False, spin=0)
+
+print('Eigenvalues:')
+print(ev)
+
+# Plot wavefunctions
+for i in range(6):
+    p = plot.Wavefunction(MFH_elec, 500*evec[:, i], figsize=(10, 3))
+    p.set_title('State %i' % i)
+    p.annotate()
+    p.savefig('state%i.pdf'%i)
+
+#Get bond order: (bonded e - antibonded e)/2
+bo = MFH_elec.get_bond_order(format='csr')
+
+print('Bond order:')
+print(bo)
