@@ -1,0 +1,37 @@
+Hamiltonian{non-zero: 3632, orthogonal: True,
+ Spin{polarized, kind=f},
+ Geometry{na: 360, no: 360,
+  Atoms{species: 1,
+   Atom{C, Z: 6, mass(au): 12.01070, maxR: 20.00000,
+    AtomicOrbital{2pzZ1, q0: 1.0, SphericalOrbital{l: 1, R: 20.000000000000004, q0: 0.0}}
+   }: 360,
+  },
+  maxR: 20.00000,
+  SuperCell{nsc: [3 3 1],
+   A=[63.947, 0.000, 0.000],
+   B=[0.000, 49.820, 0.000],
+   C=[0.000, 0.000, 14.200],
+  }
+ }
+}
+
+HubbardHamiltonian{q: [180. 180.], U: 3.0, kT: 0.025
+Hamiltonian{non-zero: 3992, orthogonal: True,
+  Spin{polarized, kind=f},
+  Geometry{na: 360, no: 360,
+   Atoms{species: 1,
+    Atom{C, Z: 6, mass(au): 12.01070, maxR: 20.00000,
+     AtomicOrbital{2pzZ1, q0: 1.0, SphericalOrbital{l: 1, R: 20.000000000000004, q0: 0.0}}
+    }: 360,
+   },
+   maxR: 20.00000,
+   SuperCell{nsc: [3 3 1],
+    A=[63.947, 0.000, 0.000],
+    B=[0.000, 49.820, 0.000],
+    C=[0.000, 0.000, 14.200],
+   }
+  }
+ }
+}
+
+
